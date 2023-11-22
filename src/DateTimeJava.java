@@ -47,6 +47,12 @@ public class DateTimeJava {
 		System.out.println("d02 = " + d02.toString());
 		System.out.println("d03 = " + d03.toString());
 		System.out.println("d04 = " + d04.toString());
+		System.out.println(d01.getDayOfYear() - d04.getDayOfYear());
+		if(!d01.isAfter(d04)) {
+			System.out.println("É depois");
+		}else {
+			System.out.println("É antes");
+		}
 		System.out.println("d05 = " + d05.toString());
 		System.out.println("d06 = " + d06.toString());
 		System.out.println("d07 = " + d07.toString());
