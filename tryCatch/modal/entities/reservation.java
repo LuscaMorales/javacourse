@@ -3,6 +3,8 @@ package modal.entities;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import model.exceptions.DomainException;
+
 public class reservation {
 	
 	private Integer roomNumber;
@@ -41,17 +43,16 @@ public class reservation {
 		return diff;
 	}
 	
-	public String updateDates(LocalDate checkin, LocalDate checkout) {
+	public void updateDates(LocalDate checkin, LocalDate checkout) throws DomainException {
 		LocalDate now = LocalDate.now();
 		if(checkin.isBefore(now) || checkout.isBefore(now)) {
-			return "Error in reservation: Reservation dates for update must be future";
+			throw new DomainException("Reservation dates for update must be future");
 		}
 		if(!checkout.isAfter(checkin)) {
-			return "Error in reservation : Check-Out date must be after check-in Date";
+			throw new DomainException("Check-Out date must be after check-in Date");
 		}
 		this.checkin = checkin;
 		this.checkout = checkout;
-		return null;
 	}
 	
 	@Override
